@@ -19,4 +19,25 @@ public class PasswordResetServiceTests
         Assert.Equal(testEmail, sentEmail.To);
         Assert.Contains(fakeTokenGenerator.Token, sentEmail.Body);
     }
+    [Fact]
+    public void IsEmailRegistered_ReturnsFalse_WhenEmailIsNotAdded()
+    {
+        var repository = new FakeUserRepository();
+        Assert.False(repository.IsEmailRegistered("test@test.com"));
+    }
+
+
+
+   [Fact]
+public void IsEmailRegistered_ReturnsTrue_WhenEmailIsAdded()
+{
+    var repository = new FakeUserRepository();
+    repository.AddUser("test@test.com", "password");
+
+    Assert.True(repository.IsEmailRegistered("test@test.com"));
 }
+    }
+        
+    
+
+ 
